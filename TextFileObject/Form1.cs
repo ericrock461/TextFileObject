@@ -8,7 +8,8 @@ namespace TextFileObject
 {
     public partial class Form1 : Form
     {
-        List<HighScore> scores = new List<HighScore>();
+        //List<HighScore> scores = new List<HighScore>();
+        List<Book> books = new List<Book>();
 
         public Form1()
         {
@@ -17,7 +18,7 @@ namespace TextFileObject
 
         private void loadScoresButton_Click(object sender, EventArgs e)
         {
-            List<string> scoreList = File.ReadAllLines("scoreFile.txt").ToList();
+            /*List<string> scoreList = File.ReadAllLines("scoreFile.txt").ToList();
 
             for (int i = 0; i < scoreList.Count; i += 2)
             {
@@ -26,9 +27,27 @@ namespace TextFileObject
 
                 HighScore hs = new HighScore(name, score);
                 scores.Add(hs);
+            }*/
+
+
+            // create a list that will contain book objects, then 
+            // create book objects and place them into the list
+
+            List<string> bookslist = File.ReadAllLines("BooksFile.txt").ToList();
+
+            for (int i = 0; i < bookslist.Count; i += 2)
+            {
+                string title = bookslist[i];
+                int number = Convert.ToInt32(bookslist[i + 1]);
+
+                Book b = new Book(title, number);
+                books.Add(b);
             }
 
-            DisplayResults();
+            loadLabel.Text = "Books loaded!";
+
+            //DisplayResults();
+            // We are not going to display all of the books.
         }
 
         /// <summary>
@@ -44,26 +63,26 @@ namespace TextFileObject
             List<string> tempList = new List<string>();
 
             // Add all info from each HighScore object to temp list
-            foreach (HighScore hs in scores)
+            foreach (Book b in books)
             {
-                tempList.Add(hs.name);
-                tempList.Add(Convert.ToString(hs.score));
+                tempList.Add(b.title);
+                tempList.Add(Convert.ToString(b.number));
             }
 
-            File.WriteAllLines("scoreFile.txt", tempList);
+            File.WriteAllLines("BooksFile.txt", tempList);
 
             Application.Exit();
         }
 
         private void sortScoresButton_Click(object sender, EventArgs e)
         {
-            scores = scores.OrderByDescending(x => x.score).ToList();
-            DisplayResults();
+            /*scores = scores.OrderByDescending(x => x.score).ToList();
+            DisplayResults();*/
         }
 
         private void addScoreButton_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 string name = nameInput.Text;
                 int score = Convert.ToInt32(scoreInput.Text);
@@ -79,12 +98,12 @@ namespace TextFileObject
             }
 
             nameInput.Text = "";
-            scoreInput.Text = "";
+            scoreInput.Text = "";*/
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            string name = nameRemove.Text;
+            /*string name = nameRemove.Text;
 
             int index = scores.FindIndex(score => score.name == name);
 
@@ -99,10 +118,64 @@ namespace TextFileObject
                 MessageBox.Show(name + " is not in the list of scores");
             }
 
-            nameRemove.Text = "";
+            nameRemove.Text = "";*/
         }
 
-        public void DisplayResults()
+        private void linearButton_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                //Boolean LinearSearch(List<string> searchList, String searchValue)
+                Boolean LinearSearch(List<Book> books, String searchValue)
+                {
+                    foreach (string s in searchValue)
+                    {
+                        if (s == numberInput.Text)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            catch
+            {
+                messageLabel.Text = "Error. Enter a valid number";
+            }
+
+
+        }
+
+        private void binaryButton_Click(object sender, EventArgs e)
+        {
+            Boolean BinarySearch(List<Book> books, string searchValue)
+            {
+                int low = 0;
+                int high = books.Count - 1;
+
+                while (high >= low)
+                {
+                    int middle = (low + high) / 2;
+                    int compare = books[middle].CompareTo(searchValue);
+
+                    if (compare == 0)
+                    {
+                        return true;
+                    }
+                    else if (compare < 0)
+                    {
+                        low = middle + 1;
+                    }
+                    else
+                    {
+                        high = middle - 1;
+                    }
+                }
+                return false;
+            }
+        }
+
+        /*public void DisplayResults()
         {
             outputLabel.Text = "";
 
@@ -110,6 +183,6 @@ namespace TextFileObject
             {
                 outputLabel.Text += hs.name + " " + hs.score + "\n";
             }
-        }
+        }*/
     }
 }
