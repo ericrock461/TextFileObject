@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.Generic;
+using System.Security.Permissions;
 
 namespace TextFileObject
 {
@@ -37,8 +38,8 @@ namespace TextFileObject
 
             for (int i = 0; i < bookslist.Count; i += 2)
             {
-                string title = bookslist[i];
-                int number = Convert.ToInt32(bookslist[i + 1]);
+                string title = bookslist[i + 1];
+                int number = Convert.ToInt32(bookslist[i]);
 
                 Book b = new Book(title, number);
                 books.Add(b);
@@ -123,36 +124,45 @@ namespace TextFileObject
 
         private void linearButton_Click(object sender, EventArgs e)
         {
-            try 
-            {
-                //Boolean LinearSearch(List<string> searchList, String searchValue)
-                Boolean LinearSearch(List<Book> books, String searchValue)
-                {
-                    foreach (string s in searchValue)
-                    {
-                        if (s == numberInput.Text)
-                        {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            }
-            catch
-            {
-                messageLabel.Text = "Error. Enter a valid number";
-            }
+               
+                int index = Convert.ToInt32(numberInput.Text);
+                string result = LinearSearch(books, index);
 
-
+                linearOutput.Text = result;
+                
+                //messageLabel.Text = "Error. Enter a valid number";
         }
 
-        private void binaryButton_Click(object sender, EventArgs e)
+        public string LinearSearch(List<Book> books, int searchValue)
         {
-            Boolean BinarySearch(List<Book> books, string searchValue)
+            foreach (Book b in books)
             {
-                int low = 0;
-                int high = books.Count - 1;
+                if (b.number == searchValue)
+                {
+                    return b.title;
+                }
+            }
+            return "Not found";
+        }
 
+
+        private void binaryButton_Click(object sender, EventArgs e)
+        {           
+            int index = Convert.ToInt32(numberInput.Text);
+            string result = BinarySearch(books, index);
+
+            binaryOutput.Text = result;
+        }
+
+        public string BinarySearch(List<Book> books, int searchValue)
+        {
+            //do I have to make searchValue a string?
+
+            int low = 0;
+            int high = books.Count - 1;
+
+            foreach (Book b in books)
+            {
                 while (high >= low)
                 {
                     int middle = (low + high) / 2;
@@ -160,7 +170,7 @@ namespace TextFileObject
 
                     if (compare == 0)
                     {
-                        return true;
+                        return b.title;
                     }
                     else if (compare < 0)
                     {
@@ -170,10 +180,34 @@ namespace TextFileObject
                     {
                         high = middle - 1;
                     }
+
+
+                    /*if (books[middle] == searchValue)
+                    {
+                        return b.title;
+                    }
+                    else if (books[middle] < searchValue)
+                    {
+                        low = middle + 1;
+                    }
+                    else
+                    {
+                        high = middle - 1;
+                    }*/
+
                 }
-                return false;
+           
             }
+
+            return "Not found";
+
         }
+
+
+
+
+
+
 
         /*public void DisplayResults()
         {

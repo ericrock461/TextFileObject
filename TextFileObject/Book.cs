@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextFileObject
 {
-    class Book
+    public class Book
     {
         public string title;
         public int number;

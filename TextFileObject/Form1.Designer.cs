@@ -49,7 +49,7 @@
             // 
             this.addScoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addScoreButton.Location = new System.Drawing.Point(331, 12);
-            this.addScoreButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addScoreButton.Margin = new System.Windows.Forms.Padding(2);
             this.addScoreButton.Name = "addScoreButton";
             this.addScoreButton.Size = new System.Drawing.Size(44, 16);
             this.addScoreButton.TabIndex = 18;
@@ -61,7 +61,7 @@
             // 
             this.sortScoresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sortScoresButton.Location = new System.Drawing.Point(331, 2);
-            this.sortScoresButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sortScoresButton.Margin = new System.Windows.Forms.Padding(2);
             this.sortScoresButton.Name = "sortScoresButton";
             this.sortScoresButton.Size = new System.Drawing.Size(44, 16);
             this.sortScoresButton.TabIndex = 17;
@@ -72,7 +72,7 @@
             // saveScoresButton
             // 
             this.saveScoresButton.Location = new System.Drawing.Point(138, 352);
-            this.saveScoresButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saveScoresButton.Margin = new System.Windows.Forms.Padding(2);
             this.saveScoresButton.Name = "saveScoresButton";
             this.saveScoresButton.Size = new System.Drawing.Size(116, 37);
             this.saveScoresButton.TabIndex = 16;
@@ -82,13 +82,14 @@
             // 
             // loadBooksButton
             // 
-            this.loadBooksButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.loadBooksButton.Location = new System.Drawing.Point(138, 22);
-            this.loadBooksButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.loadBooksButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadBooksButton.ForeColor = System.Drawing.Color.Blue;
+            this.loadBooksButton.Location = new System.Drawing.Point(118, 22);
+            this.loadBooksButton.Margin = new System.Windows.Forms.Padding(2);
             this.loadBooksButton.Name = "loadBooksButton";
-            this.loadBooksButton.Size = new System.Drawing.Size(116, 42);
+            this.loadBooksButton.Size = new System.Drawing.Size(155, 59);
             this.loadBooksButton.TabIndex = 15;
-            this.loadBooksButton.Text = "Load Books";
+            this.loadBooksButton.Text = "Load Book(?)s";
             this.loadBooksButton.UseVisualStyleBackColor = true;
             this.loadBooksButton.Click += new System.EventHandler(this.loadScoresButton_Click);
             // 
@@ -114,7 +115,7 @@
             // numberInput
             // 
             this.numberInput.Location = new System.Drawing.Point(255, 178);
-            this.numberInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numberInput.Margin = new System.Windows.Forms.Padding(2);
             this.numberInput.Name = "numberInput";
             this.numberInput.Size = new System.Drawing.Size(28, 20);
             this.numberInput.TabIndex = 21;
@@ -123,7 +124,7 @@
             // 
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeButton.Location = new System.Drawing.Point(331, 22);
-            this.removeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removeButton.Margin = new System.Windows.Forms.Padding(2);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(44, 16);
             this.removeButton.TabIndex = 23;
@@ -158,12 +159,12 @@
             // 
             this.explainLabel.AutoSize = true;
             this.explainLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.explainLabel.Location = new System.Drawing.Point(24, 121);
+            this.explainLabel.Location = new System.Drawing.Point(14, 121);
             this.explainLabel.Name = "explainLabel";
-            this.explainLabel.Size = new System.Drawing.Size(339, 26);
+            this.explainLabel.Size = new System.Drawing.Size(348, 26);
             this.explainLabel.TabIndex = 26;
-            this.explainLabel.Text = "This program will find the title of a book based on its reference number.\r\nYou ma" +
-    "y use a linear or a binary search.";
+            this.explainLabel.Text = "This program will find the title of a book(?) based on its reference number\r\nbegi" +
+    "nning at 1, through 100. You may use a linear or a binary search.";
             this.explainLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.explainLabel.Click += new System.EventHandler(this.addScoreButton_Click);
             // 
@@ -193,12 +194,13 @@
             // 
             // loadLabel
             // 
+            this.loadLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadLabel.ForeColor = System.Drawing.Color.Red;
-            this.loadLabel.Location = new System.Drawing.Point(128, 70);
+            this.loadLabel.Location = new System.Drawing.Point(126, 89);
             this.loadLabel.Name = "loadLabel";
             this.loadLabel.Size = new System.Drawing.Size(137, 23);
             this.loadLabel.TabIndex = 29;
-            this.loadLabel.Text = "Books not loaded";
+            this.loadLabel.Text = "Book(?)s not loaded";
             this.loadLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // binaryOutput
@@ -230,10 +232,10 @@
             this.Controls.Add(this.saveScoresButton);
             this.Controls.Add(this.loadBooksButton);
             this.Controls.Add(this.linearOutput);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Book(?) Finder";
             this.ResumeLayout(false);
             this.PerformLayout();
 
