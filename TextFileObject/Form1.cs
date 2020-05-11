@@ -156,21 +156,17 @@ namespace TextFileObject
 
         public string BinarySearch(List<Book> books, int searchValue)
         {
-            //do I have to make searchValue a string?
-
             int low = 0;
             int high = books.Count - 1;
-
-            foreach (Book b in books)
-            {
+        
                 while (high >= low)
                 {
                     int middle = (low + high) / 2;
-                    int compare = books[middle].CompareTo(searchValue);
+                    int compare = books[middle].number.CompareTo(searchValue);
 
                     if (compare == 0)
                     {
-                        return b.title;
+                        return books[middle].title;
                     }
                     else if (compare < 0)
                     {
@@ -195,12 +191,9 @@ namespace TextFileObject
                         high = middle - 1;
                     }*/
 
-                }
-           
-            }
+                }                      
 
             return "Not found";
-
         }
 
 
